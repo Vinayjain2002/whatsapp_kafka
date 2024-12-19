@@ -1,5 +1,5 @@
 const express= require('express');
-const mongoDBConnect = require('./mongoDB/connection')
+const mongoDBConnect = require('./Connection/mongoDB/connection')
 const dotenv= require('dotenv')
 const bodyParser= require('body-parser')
 const cors= require('cors')
