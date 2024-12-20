@@ -1,13 +1,13 @@
-const express= require('express');
-const mongoDBConnect = require('./Connection/mongoDB/connection')
-const dotenv= require('dotenv')
-const bodyParser= require('body-parser')
-const cors= require('cors')
-const http= require('http')
-const {Server}= require('socket.io')
+import express from 'express'
+import  dotenv from 'dotenv'
+import bodyParser from 'body-parser'
+import cors from 'cors'
+import http from 'http'
+import {Server} from 'socket.io'
 
 // used for the peer to peer connection for the WebRTC for the audio, video.
-const {ExpressPeerServer}= require('peer');
+import {ExpressPeerServer} from 'peer'
+import mongoDBConnect  from './Connection/mongoDB/mongooseConnection.js';
 
 const app= express()
 dotenv.config();
@@ -16,7 +16,9 @@ const corsConfig={
     credentials: true
 };
 const server= http.createServer(app)
-const io= new Server(server)
+const io= new Server(server,{
+    cors: true
+})
 const peerServer= ExpressPeerServer(server, {
     debug: true
 });
@@ -66,8 +68,10 @@ io.on('connection', (socket)=>{
         });
     });
 
+    // used for the connection to the Other user where the user try to connect with each other using room
     socket.on('join-room', (roomId, userId)=>{
         socket.join(roomId);
+        // send the message to the users that the user has joined the room
         socket.to(roomId).emit('user-connected', userId);
     });
 
