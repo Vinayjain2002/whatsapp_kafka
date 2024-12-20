@@ -4,6 +4,12 @@ import bodyParser from 'body-parser'
 import cors from 'cors'
 import http from 'http'
 import {Server} from 'socket.io'
+import userRoutes from './routes/user.js'
+import chatRoutes from './routes/chat.js'
+import messageRoutes from './routes/message.js'
+import videoCallRoutes from './routes/videoCall.js'
+import audioCallRoutes from './routes/audioCall.js'
+import fileRoutes from './routes/file.js'
 
 // used for the peer to peer connection for the WebRTC for the audio, video.
 import {ExpressPeerServer} from 'peer'
@@ -30,10 +36,14 @@ app.use('/peerja', peerServer);
 app.use(express.static('public'))
 app.use(bodyParser.json())
 app.use(cors(corsConfig))
+app.use('/',userRoutes)
+app.use('/api/chat', chatRoutes)
+app.use('/api/message', messageRoutes)
+app.use('/api/file', fileRoutes)
+app.use('/api/video', videoCallRoutes)
+app.use('/api/audio', audioCallRoutes);
+
 mongoDBConnect();
-
-
-
 
 io.on('connection', (socket)=>{
     console.log('new connection')

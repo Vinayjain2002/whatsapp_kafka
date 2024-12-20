@@ -1,4 +1,5 @@
-const mongoose= require('mongoose')
+import mongoose from "mongoose";
+
 const FileDetailsSchema= new mongoose.Schema({
     fileName: {
         type: String
@@ -29,4 +30,4 @@ const FileDetailsSchema= new mongoose.Schema({
 });
 
 const FileDetails= mongoose.model("FileDetails", FileDetailsSchema);
-module.exports= FileDetails;
+export default FileDetails;

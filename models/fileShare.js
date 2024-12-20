@@ -1,5 +1,4 @@
-const mongoose= require('mongoose')
-
+import mongoose from "mongoose";
 const fileShareSchema= new mongoose.Schema({
     fromUserId: {
         type: mongoose.Schema.Types.ObjectId,
@@ -16,4 +15,4 @@ const fileShareSchema= new mongoose.Schema({
 });
 
 const FileShare= mongoose.model("FileShare", fileShareSchema);
-module.exports= FileShare;
+export default FileShare;

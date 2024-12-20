@@ -1,5 +1,4 @@
-const mongoose= require('mongoose')
-
+import mongoose  from "mongoose";
 const meetSchema= new mongoose.Schema({
     admin: {
         type: mongoose.Schema.ObjectId,
@@ -15,5 +14,5 @@ const meetSchema= new mongoose.Schema({
     }
 })
 
-meetSchema= mongoose.model("Meeting", meetSchema);
-module.exports= meetSchema;
+const Meeting= mongoose.model("Meeting", meetSchema);
+export default Meeting;

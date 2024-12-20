@@ -3,7 +3,12 @@ import User from '../models/userModel.js'
 import Chat from '../models/chatModel.js'
 
 export const sendMessage= async(req, res)=>{
-
+    try{
+       
+        
+    }catch(err){
+        return res.status(500).json({"message": "Internal Server Error"})
+    }
 }
 
 export const getMessages= async(req,res)=>{
